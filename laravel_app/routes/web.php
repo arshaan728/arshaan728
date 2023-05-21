@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Models\User;
 
+use Illuminate\Pagination\Paginator;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,7 +31,24 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/viewitems', function() {
-    return view('viewdetails');
+
+    $user = user::paginate(5);
+
+    return view('viewdetails',compact('user'));
 });
+
+Route::get('add-user',[ProfileController::class,'adduser']);
+
+Route::post('save-user',[ProfileController::class,'saveuser']);
+
+Route::get('edit-student/{id}',[ProfileController::class,'editstudent']);
+
+
+Route::post('update-user',[ProfileController::class,'updateuser']);
+
+Route::delete('delete-student/{id}',[ProfileController::class,'destroyrecord']);
+
+Route::get('/search',[ProfileController::class,'searchemail']);
+// Route::post('/deleterecord',[ProfileController::class,'deleterecord'])->name('delete.country');
 
 require __DIR__.'/auth.php';
