@@ -22,7 +22,7 @@
   </form>
 </nav>
 <div style='margin-right'>
-<a href="{{url('add-user')}}"> add</a>
+<a href="{{url('add-user')}}" class="link-warning"> add</a>
 </div>
 <table class="table">
   <thead>
